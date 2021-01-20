@@ -1,5 +1,7 @@
 {
     "conventionalCommits.scopes": [
-        "back"
+        "back",
+        "front",
+        "doc"
     ]
 }
