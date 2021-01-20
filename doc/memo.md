@@ -1,6 +1,6 @@
 # メモ
 ## やりたいこと
-- seles force 的なオールインワンの管理ツールを目指す
+- hubspot 的なオールインワンの管理ツールを目指す
 - apiと管理者画面はspring boot、frontend は flutter で作る（iosは一旦放置）
 - umlを書く
 
