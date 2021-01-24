@@ -1,0 +1,19 @@
+@startuml
+
+object "従業員" as Emploee
+object "管理者" as Admin
+object "顧客" as Customer
+object "予定表" as TimeTable
+object "予定" as Schedule
+object "勤怠表" as AttendanceRecord
+object "勤怠" as Attendance
+
+Admin o--> Emploee
+Emploee o--> Customer
+Emploee o--> TimeTable
+Emploee o--> AttendanceRecord
+TimeTable o--> Schedule
+AttendanceRecord o--> Attendance
+
+
+@enduml

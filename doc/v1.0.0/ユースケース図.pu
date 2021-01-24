@@ -1,0 +1,17 @@
+@startuml
+left to right direction
+
+:従業員: as emploee
+:管理者: as admin
+
+rectangle {
+
+emploee --> (勤怠予定登録)
+emploee --> (営業予定登録)
+emploee --> (顧客情報登録)
+
+admin --> (従業員の登録情報を管理)
+
+}
+
+@enduml
