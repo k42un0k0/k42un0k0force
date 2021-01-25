@@ -10,6 +10,7 @@ object 営業予定
 object 営業報告
 object コメント
 object 勤怠表
+object 勤怠予定
 object 勤怠
 object メッセージ
 object 従業員アカウント
@@ -26,7 +27,8 @@ object マスターアカウントリスト
 営業予定 o-left- 顧客
 営業報告 o-up- 営業予定
 従業員 o-- 勤怠表
-勤怠表 o-- 勤怠
+勤怠表 o-- 勤怠予定
+勤怠予定 o-- 勤怠
 管理者 o-- コメント
 営業報告 o-right- コメント
 
