@@ -1,0 +1,45 @@
+version: 2.1
+
+workflows:
+  # Name the workflow "welcome"
+  regsuit:
+    jobs:
+      - regsuit
+
+jobs:
+  regsuit:
+    docker:
+      - image: circleci/node:14-browsers
+    steps:
+      - checkout
+      - install_graphviz
+      - install_japanese_fonts
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Node Packages
+          command: yarn install
+      - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+      - run:
+          name: Run reg-suit
+          command: yarn run-reg-suit
+
+commands:
+  install_graphviz:
+    steps:
+      - run:
+          name: install graphviz
+          command: |
+            sudo apt-get update
+            sudo apt-get install graphviz
+
+  install_japanese_fonts:
+    steps:
+      - run:
+          name: Install Japanese font
+          command: |
+            sudo apt-get update
+            sudo apt-get install fonts-migmix
