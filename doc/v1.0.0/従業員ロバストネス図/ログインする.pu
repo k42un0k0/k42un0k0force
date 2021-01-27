@@ -1,0 +1,32 @@
+@startuml
+left to right direction
+
+actor 従業員
+boundary "「ログイン」ページ" as loginPage
+entity マスターアカウントリスト
+entity 従業員アカウント
+control "「ログイン」ページを表示する" as showLoginPage
+control メールアドレスとパスワードを入力する
+control 従業員アカウントは存在するか
+control 従業員アカウント情報を取得する
+control パスワードは正しいか
+control "「メールアドレスまたはパスワードが間違っています」を表示する" as loginErrorMessage #ccc
+control 認証済みのセッションを開始する
+control "直前のページを表示する" as showLastPage
+
+
+従業員 -- loginPage
+showLoginPage --> loginPage
+loginPage --> メールアドレスとパスワードを入力する
+メールアドレスとパスワードを入力する --> 従業員アカウントは存在するか : 「ログイン」ボタンをクリック
+従業員アカウントは存在するか -- マスターアカウントリスト
+マスターアカウントリスト --> 従業員アカウント情報を取得する
+従業員アカウント情報を取得する -- 従業員アカウント
+従業員アカウントは存在するか --> パスワードは正しいか : はい
+従業員アカウントは存在するか --> loginErrorMessage : いいえ
+パスワードは正しいか --> loginErrorMessage : いいえ
+パスワードは正しいか --> 認証済みのセッションを開始する : はい
+認証済みのセッションを開始する -- showLastPage
+loginErrorMessage --> loginPage
+
+@enduml
