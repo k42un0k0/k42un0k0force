@@ -2,6 +2,9 @@
 left to right direction
 
 :従業員:
+
+(ログインする)
+
 rectangle ログイン後{
 (ログアウトする)
 (勤怠予定を登録する)
