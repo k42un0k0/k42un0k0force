@@ -1,0 +1,15 @@
+@startuml
+left to right direction
+
+actor 従業員
+control セッションのチェック
+control セッションを削除
+boundary "「ログイン」ページ" as loginPage
+
+従業員 --> セッションのチェック : 「ログアウト」ボタンをクリック
+セッションのチェック --> セッションを削除
+セッションのチェック --> loginPage : セッションの有効期限切れ
+セッションを削除 --> loginPage : セッションが有効
+
+
+@enduml
