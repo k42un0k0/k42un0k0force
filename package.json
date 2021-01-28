@@ -1,0 +1,32 @@
+{
+  "name": "k42un0k0force",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "prerun-reg-suit": "node ./scripts/export_diagrams.js",
+    "run-reg-suit": "reg-suit run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k42un0k0/k42un0k0force.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/k42un0k0/k42un0k0force/issues"
+  },
+  "homepage": "https://github.com/k42un0k0/k42un0k0force#readme",
+  "devDependencies": {
+    "chalk": "^4.1.0",
+    "glob": "^7.1.6",
+    "jest": "^26.6.3",
+    "reg-keygen-git-hash-plugin": "^0.10.12",
+    "reg-notify-github-plugin": "^0.10.12",
+    "reg-suit": "^0.10.13"
+  },
+  "dependencies": {
+    "reg-publish-github-pages-plugin": "^0.0.6"
+  }
+}
