@@ -1,0 +1,22 @@
+{
+  "core": {
+    "workingDir": ".reg",
+    "actualDir": "directory_contains_actual_images",
+    "thresholdRate": 0,
+    "addIgnore": true,
+    "ximgdiff": {
+      "invocationType": "client"
+    }
+  },
+  "plugins": {
+    "reg-keygen-git-hash-plugin": true,
+    "reg-notify-github-plugin": {
+      "clientId": "$CLIENT_ID_FOR_REGSUIT"
+    },
+    "reg-publish-github-pages-plugin": {
+      "repository": "k42un0k0/k42un0k0force",
+      "branchName": "gh-pages",
+      "token": "$PERSONAL_ACCESS_TOKEN"
+    }
+  }
+}
