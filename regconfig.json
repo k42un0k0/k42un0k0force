@@ -16,7 +16,7 @@
     "reg-publish-github-pages-plugin": {
       "repository": "k42un0k0/k42un0k0force",
       "branchName": "gh-pages",
-      "token": "$GITHUB_TOKEN"
+      "token": "$PERSONAL_ACCESS_TOKEN"
     }
   }
 }
