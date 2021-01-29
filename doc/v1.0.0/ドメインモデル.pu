@@ -1,0 +1,35 @@
+@startuml ドメインモデル
+
+object 営業マン
+object 管理者
+object 従業員
+
+object 顧客
+object 営業予定表
+object 営業予定
+object 営業報告
+object コメント
+object 勤怠表
+object 勤怠予定
+object 勤怠
+object メッセージ
+object 従業員アカウント
+object マスターアカウントリスト
+
+営業マン --|> 従業員
+管理者 --|> 従業員
+従業員 o-right- 従業員アカウント
+マスターアカウントリスト o-- 従業員アカウント
+従業員 o-left- メッセージ
+従業員 o-- 顧客
+従業員 o-- 営業予定表
+営業予定表 o-- 営業予定
+営業予定 o-left- 顧客
+営業報告 o-up- 営業予定
+従業員 o-- 勤怠表
+勤怠表 o-- 勤怠予定
+勤怠予定 o-- 勤怠
+管理者 o-- コメント
+営業報告 o-right- コメント
+
+@enduml
