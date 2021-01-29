@@ -3,7 +3,6 @@
 object 営業マン
 object 管理者
 object 従業員
-object 従業員a
 
 object 顧客
 object 営業予定表
