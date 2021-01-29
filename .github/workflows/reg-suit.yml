@@ -7,17 +7,17 @@ on:
   push:
     branches: [master]
   pull_request:
-    paths: [ 'doc/**' ]
+    paths: ["doc/**"]
 
 jobs:
   reg-suit:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
       with:
-        ref: ${{ github.event.pull_request.head.sha }}
+        ref: ${{ github.head_ref }}
+        fetch-depth: 0
     - name: Use Node.js 14
       uses: actions/setup-node@v1
       with:
@@ -38,8 +38,7 @@ jobs:
     - run: sudo apt-get install fonts-migmix graphviz
     - run: yarn install
     - name: Reg Suit Test
-      run:  yarn run-reg-suit
+      run: yarn run-reg-suit
       env:
         CLIENT_ID_FOR_REGSUIT: ${{ secrets.CLIENT_ID_FOR_REGSUIT }}
         PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-
