@@ -5,7 +5,6 @@ name: Reg suit
 
 on:
   pull_request:
-    branches: [ 'hotfix/**' ]
     paths: [ 'doc/**' ]
 
 jobs:
@@ -15,6 +14,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        ref: ${{github.head_ref}}
     - name: Use Node.js 14
       uses: actions/setup-node@v1
       with:
@@ -34,7 +35,6 @@ jobs:
     # /キャッシュ管理
     - run: sudo apt-get install fonts-migmix graphviz
     - run: yarn install
-    - run: git log
     - name: Reg Suit Test
       run:  yarn run-reg-suit
       env:
