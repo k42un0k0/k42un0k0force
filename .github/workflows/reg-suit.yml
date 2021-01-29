@@ -32,12 +32,10 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-yarn-
     # /キャッシュ管理
-    - name: Yarn Install
-      if: steps.yarn-cache.outputs.cache-hit != 'true'
-      run: yarn install
+    - run: yarn install
     - name: Reg Suit Test
       run:  yarn run-reg-suit
       env:
-        GITHUB_CLIENT_ID: ${{ secrets.CLIENT_ID_FOR_REGSUIT }}
+        CLIENT_ID_FOR_REGSUIT: ${{ secrets.CLIENT_ID_FOR_REGSUIT }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
