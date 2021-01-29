@@ -4,10 +4,8 @@
 name: Reg suit
 
 on:
-  push:
-    branches: [ 'feature/**' ]
   pull_request:
-    branches: [ 'feature/**' ]
+    paths: [ 'doc/**' ]
 
 jobs:
   test:
