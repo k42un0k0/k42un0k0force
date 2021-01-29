@@ -4,6 +4,8 @@
 name: Reg suit
 
 on:
+  push:
+    branches: [master]
   pull_request:
     paths: [ 'doc/**' ]
 
@@ -15,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        ref: ${{github.head_ref}}
+        ref: ${{ github.event.pull_request.head.sha }}
     - name: Use Node.js 14
       uses: actions/setup-node@v1
       with:
