@@ -1,9 +1,9 @@
-const { cbToPromise } = require("./utils");
+const { cbToPromise, sjisToUtf8, IS_WINDOWS } = require("./utils");
 
 describe("cbToPromise", () => {
     test("callback to promise with resolve", () => {
         function someCallback(arg, cb) {
-            cb(arg, undefined);
+            cb(undefined, arg);
         }
         const promisedFn = cbToPromise(someCallback)
 
@@ -15,7 +15,7 @@ describe("cbToPromise", () => {
 
     test("callback to promise with reject", () => {
         function someCallback(_, cb) {
-            cb(undefined, Error("faild by some error"));
+            cb(Error("faild by some error"));
         }
         const promisedFn = cbToPromise(someCallback)
 

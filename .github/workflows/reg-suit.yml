@@ -1,12 +1,13 @@
 # This workflow will do a clean install of node dependencies, test the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+name: Reg suit
 
 on:
   push:
-    branches-ignore: [ gh-pages ]
+    branches: [ 'feature/**' ]
   pull_request:
+    branches: [ 'feature/**' ]
 
 jobs:
   test:
@@ -32,5 +33,11 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-yarn-
     # /キャッシュ管理
+    - run: sudo apt-get install fonts-migmix graphviz
     - run: yarn install
-    - run: npm test
+    - name: Reg Suit Test
+      run:  yarn run-reg-suit
+      env:
+        CLIENT_ID_FOR_REGSUIT: ${{ secrets.CLIENT_ID_FOR_REGSUIT }}
+        PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+

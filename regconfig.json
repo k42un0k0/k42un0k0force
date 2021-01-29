@@ -11,12 +11,12 @@
   "plugins": {
     "reg-keygen-git-hash-plugin": true,
     "reg-notify-github-plugin": {
-      "clientId": "$GITHUB_CLIENT_ID"
+      "clientId": "$CLIENT_ID_FOR_REGSUIT"
     },
     "reg-publish-github-pages-plugin": {
       "repository": "k42un0k0/k42un0k0force",
       "branchName": "gh-pages",
-      "token": "$GITHUB_TOKEN"
+      "token": "$PERSONAL_ACCESS_TOKEN"
     }
   }
 }

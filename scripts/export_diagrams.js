@@ -1,7 +1,7 @@
 const chalk = require("chalk");
 var glob = require('glob');
 const { exec } = require('child_process');
-const { cbToPromise } = require("./utils");
+const { cbToPromise, IS_WINDOWS } = require("./utils");
 const path = require("path");
 
 const pGlob = cbToPromise(glob);
@@ -21,15 +21,23 @@ async function main() {
         // inputDirNameから*.puを検索
         files = await findAllPuml(inputDirName);
     } catch (error) {
-        console.log(chalk.red(error));
-        process.exit(-1);
+        exitWithShowError(1, error);
     }
 
     // すべての.pu を全て画像化
     const promises = files.map(pumlToImage(inputDirName, outputDirName, jarFilePath));
 
-    await Promise.all(promises);
+    try {
+        await Promise.all(promises);
+    } catch (error) {
+        exitWithShowError(2, error);
+    }
     console.log(chalk.green('Done!!'));
+}
+
+function exitWithShowError(code, err) {
+    console.log(chalk.red(err));
+    process.exit(code);
 }
 
 function findAllPuml(rootDir) {
@@ -52,7 +60,12 @@ function pumlToImage(fromDirName, toDirName, jarFilePath) {
         }
         const outputPath = generateOutputPath()
         console.log(`from ${file}`);
-        return pExec(`java -Dfile.encoding=UTF-8 -jar ${jarFilePath} ${file} -o ${outputPath}`).then((res) => {
+        let javaCommand = `java -Dfile.encoding=UTF-8 -jar ${jarFilePath} ${file} -o ${outputPath}`
+        // windowsの場合、出力をutf-8に変換
+        if (IS_WINDOWS) {
+            javaCommand = "chcp 65001 & " + javaCommand
+        }
+        return pExec(javaCommand).then((res) => {
             console.log(`output of ${file}: ` + res);
             return res;
         })
