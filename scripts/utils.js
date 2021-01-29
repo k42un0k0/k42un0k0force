@@ -7,3 +7,5 @@ module.exports.cbToPromise = function cbToPromise(fn) {
         }
     }))
 }
+
+module.exports.IS_WINDOWS = process.platform === 'win32'
