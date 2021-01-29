@@ -4,6 +4,8 @@
 name: Reg suit
 
 on:
+  push:
+    branches: [master]
   pull_request:
     paths: [ 'doc/**' ]
 
