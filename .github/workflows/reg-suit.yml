@@ -5,6 +5,7 @@ name: Reg suit
 
 on:
   pull_request:
+    branches: [ 'hotfix/**' ]
     paths: [ 'doc/**' ]
 
 jobs:
@@ -33,6 +34,7 @@ jobs:
     # /キャッシュ管理
     - run: sudo apt-get install fonts-migmix graphviz
     - run: yarn install
+    - run: git log
     - name: Reg Suit Test
       run:  yarn run-reg-suit
       env:
