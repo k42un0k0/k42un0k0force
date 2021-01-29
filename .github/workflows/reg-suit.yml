@@ -37,22 +37,6 @@ jobs:
     - run: sudo apt-get install fonts-migmix graphviz
     - run: yarn install
     - name: Reg Suit Test
-      run:  yarn run-reg-suit
-      env:
-        CLIENT_ID_FOR_REGSUIT: ${{ secrets.CLIENT_ID_FOR_REGSUIT }}
-        PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-
-    - uses: actions/cache@v2
-      id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
-    # /キャッシュ管理
-    - run: sudo apt-get install fonts-migmix graphviz
-    - run: yarn install
-    - name: Reg Suit Test
       run: yarn run-reg-suit
       env:
         CLIENT_ID_FOR_REGSUIT: ${{ secrets.CLIENT_ID_FOR_REGSUIT }}
