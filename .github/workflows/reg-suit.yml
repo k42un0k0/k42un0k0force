@@ -5,8 +5,9 @@ name: Reg suit
 
 on:
   push:
-    branches-ignore: [ gh-pages ]
+    branches: [ 'feature/**' ]
   pull_request:
+    branches: [ 'feature/**' ]
 
 jobs:
   test:
