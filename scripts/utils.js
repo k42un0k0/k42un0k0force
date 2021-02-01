@@ -1,4 +1,4 @@
-module.exports.cbToPromise = function cbToPromise(fn) {
+export function cbToPromise(fn) {
     return (arg) => new Promise((resolve, reject) => fn(arg, (err, res) => {
         if (err == null) {
             resolve(res);
@@ -8,4 +8,4 @@ module.exports.cbToPromise = function cbToPromise(fn) {
     }))
 }
 
-module.exports.IS_WINDOWS = process.platform === 'win32'
+export const IS_WINDOWS = process.platform === 'win32'
