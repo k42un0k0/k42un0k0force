@@ -1,8 +1,8 @@
-const chalk = require("chalk");
-var glob = require('glob');
-const { exec } = require('child_process');
-const { cbToPromise, IS_WINDOWS } = require("./utils");
-const path = require("path");
+import chalk from "chalk"
+import glob from "glob"
+import { exec } from "child_process"
+import { cbToPromise, IS_WINDOWS } from "./utils"
+import path from "path"
 
 const pGlob = cbToPromise(glob);
 const pExec = cbToPromise(exec);

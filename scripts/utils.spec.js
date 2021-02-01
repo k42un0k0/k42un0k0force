@@ -1,4 +1,4 @@
-const { cbToPromise, sjisToUtf8, IS_WINDOWS } = require("./utils");
+import { cbToPromise, sjisToUtf8, IS_WINDOWS } from "./utils"
 
 describe("cbToPromise", () => {
     test("callback to promise with resolve", () => {
