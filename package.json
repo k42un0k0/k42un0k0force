@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "prerun-reg-suit": "babel-node ./scripts/export_diagrams.js",
+    "prerun-reg-suit": "puml-to-image",
     "run-reg-suit": "reg-suit run"
   },
   "repository": {
@@ -19,17 +18,12 @@
   },
   "homepage": "https://github.com/k42un0k0/k42un0k0force#readme",
   "devDependencies": {
-    "@babel/core": "7.12.10",
-    "@babel/node": "7.12.10",
-    "@babel/preset-env": "7.12.11",
-    "babel-jest": "26.6.3",
-    "chalk": "^4.1.0",
-    "glob": "^7.1.6",
-    "jest": "^26.6.3",
     "reg-keygen-git-hash-plugin": "^0.10.12",
     "reg-notify-github-plugin": "^0.10.12",
     "reg-publish-github-pages-plugin": "^0.0.6",
     "reg-suit": "^0.10.13"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@k42un0k0/puml-to-image": "^0.0.5"
+  }
 }
