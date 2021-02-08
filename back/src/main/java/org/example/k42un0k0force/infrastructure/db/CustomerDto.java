@@ -1,12 +1,12 @@
-package org.example;
+package org.example.k42un0k0force.infrastructure.db;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
-public class Customer {
+@Entity(name = "customers")
+public class CustomerDto {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -14,9 +14,9 @@ public class Customer {
     private String firstName;
     private String lastName;
 
-    protected Customer() {}
+    protected CustomerDto() {}
 
-    public Customer(String firstName, String lastName) {
+    public CustomerDto(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -24,7 +24,7 @@ public class Customer {
     @Override
     public String toString() {
         return String.format(
-                "org.example.Customer[id=%d, firstName='%s', lastName='%s']",
+                "org.example.k42un0k0force.model.Customer[id=%d, firstName='%s', lastName='%s']",
                 id, firstName, lastName);
     }
 
