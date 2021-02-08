@@ -9,9 +9,11 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
+    implementation 'com.auth0:java-jwt:3.13.0'
     compileOnly("org.projectlombok:lombok")
     annotationProcessor ("org.projectlombok:lombok")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
