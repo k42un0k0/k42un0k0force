@@ -5,18 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd757960-307a-467c-abbc-fe020e2294c9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/config/DataSourceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/controller/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/infrastructure/db/AuthorityDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/infrastructure/db/AuthorityDtoPK.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/error.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/controller/UsersController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/spring/security/UserDetailsImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/spring/security/UserDetailsServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Customer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CustomerRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Example.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/SampleController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/config/DataSourceConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/controller/LoginController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/controller/SampleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/domain/Emploee.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/domain/EmployeeRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/infrastructure/db/AuthorityDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/infrastructure/db/AuthorityDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/infrastructure/db/AuthorityDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/infrastructure/db/AuthorityDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/infrastructure/db/AuthorityDtoPK.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/infrastructure/db/AuthorityPk.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/infrastructure/db/CustomerDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/infrastructure/db/CustomerDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/infrastructure/db/EmployeeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force/infrastructure/db/EmployeeDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/greeting.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/users/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,14 +126,16 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../demo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/org/example/k42un0k0force" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.HTML" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\k42un\Documents\workspace\projects\K42un0k0Force\back\src\main\java\org\example\k42un0k0force" />
       <recent name="C:\Users\k42un\Documents\workspace\projects\K42un0k0Force\back\src\main\resources\templates" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.example.k42un0k0force.spring" />
       <recent name="org.example.k42un0k0force.infrastructure" />
       <recent name="org.example.k42un0k0force" />
     </key>

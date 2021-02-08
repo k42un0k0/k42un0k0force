@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 
-public interface AuthorityDao extends CrudRepository<AuthorityDto, AuthorityDtoPK> {
+public interface AuthorityDao extends CrudRepository<AuthorityDto, AuthorityPk> {
     Optional<AuthorityDto> findByUsername(String userName);
 }

@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 
 @Entity(name = "authorities")
-@IdClass(AuthorityDtoPK.class)
+@IdClass(AuthorityPk.class)
 public class AuthorityDto {
     @Setter
     @Id

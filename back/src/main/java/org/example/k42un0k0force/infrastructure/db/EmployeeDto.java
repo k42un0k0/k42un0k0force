@@ -3,16 +3,18 @@ package org.example.k42un0k0force.infrastructure.db;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name = "employees")
 public class EmployeeDto {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     @Setter
     @Getter
-    @Id
-    @Column(columnDefinition = "VARCHAR(50)")
+    @Column(nullable = false, unique = true, columnDefinition = "VARCHAR(50)")
     private String username;
 
     @Setter
