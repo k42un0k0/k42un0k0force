@@ -1,16 +1,19 @@
 package org.example.k42un0k0force.config;
 
+import org.example.k42un0k0force.spring.security.AuthenticationFailureHandlerImpl;
+import org.example.k42un0k0force.spring.security.AuthenticationSuccessHandlerImpl;
+import org.example.k42un0k0force.spring.security.UsernamePasswordAuthenticationFilterImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-
-/**
- * @author Joe Grandja
- */
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -21,16 +24,35 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/**", "/index").permitAll()
                 .antMatchers("/user/**").hasRole("USER")
                 .antMatchers("/h2-console/**").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .failureUrl("/login-error")
+                .loginPage("/login").permitAll().failureUrl("/login-error")
                 .and()
-                .headers().frameOptions().disable()
+                .logout().logoutSuccessUrl("/login").permitAll()
                 .and()
                 .sessionManagement().invalidSessionUrl("/login")
                 .and()
-                .logout().logoutSuccessUrl("/login").permitAll();
+                .headers().frameOptions().disable()
+                .and()
+                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                .and()
+                .cors().configurationSource(corsConfigurationSource())
+                .and()
+                .addFilter(usernamePasswordAuthenticationFilter());
+    }
+
+    private CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.addAllowedHeader("*");
+        corsConfiguration.addAllowedMethod("*");
+        corsConfiguration.addAllowedOrigin("*");
+        corsConfiguration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource corsSource = new UrlBasedCorsConfigurationSource();
+        corsSource.registerCorsConfiguration("/**", corsConfiguration);
+
+        return corsSource;
     }
 
     @Bean
@@ -38,4 +60,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+    UsernamePasswordAuthenticationFilterImpl usernamePasswordAuthenticationFilter() throws Exception {
+        UsernamePasswordAuthenticationFilterImpl filter = new UsernamePasswordAuthenticationFilterImpl();
+        filter.setAuthenticationManager(authenticationManager());
+        filter.setAuthenticationSuccessHandler(new AuthenticationSuccessHandlerImpl());
+        filter.setAuthenticationFailureHandler(new AuthenticationFailureHandlerImpl());
+        return filter;
+    }
 }
