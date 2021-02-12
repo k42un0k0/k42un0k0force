@@ -1,9 +1,3 @@
-# タスク管理ツールを使ってないのでメモ代わり
-
-- spring securityのよさげなきーたを見つけた(emploeeへの移行に対しても使用もできそう)
-- h2consoleにアクセスするため、csrfとframe denyを無効化
-    - まぁまぁ機能への影響がでかいので今後どうするか考える
-
 # k42un0k0force backend
 
 ## name convention
