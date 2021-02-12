@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:k42un0k0force/api/utils/uri_builder.dart';
-import 'package:k42un0k0force/constants/urls.dart';
-import 'package:k42un0k0force/screens/auth/login_screen.dart';
+import 'file:///C:/Users/k42un/Documents/workspace/projects/K42un0k0Force/front/lib/screens/login_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -16,7 +14,7 @@ class HomeScreen extends StatelessWidget {
           children: <Widget>[
             Text("this is Home Screen"),
             ElevatedButton(
-                onPressed: () {
+                onPressed:  (){
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => LoginScreen()));
                 },

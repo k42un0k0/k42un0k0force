@@ -1,2 +1,2 @@
 
-const apiUrl = "http://localhost:8080";
+const apiUrl = "10.0.2.2:8080";

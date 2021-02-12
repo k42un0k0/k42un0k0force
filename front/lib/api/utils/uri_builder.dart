@@ -1,6 +1,8 @@
 
 // Interfaces
 
+import 'package:k42un0k0force/api/constants/urls.dart';
+
 abstract class BuildBuilder<T> {
   T get _instance;
   String _baseUri;
@@ -76,3 +78,7 @@ class AuthUriBuilder extends BuildBuilder<AuthUriBuilder> {
   @override
   AuthUriBuilder get _instance => this;
 }
+
+// Variables
+
+var apiUriBuilder = RootUriBuilder(apiUrl);
