@@ -1,9 +1,9 @@
 package org.example.k42un0k0force.spring.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.k42un0k0force.constants.ContentType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
@@ -18,8 +18,8 @@ public class AuthenticationSuccessHandlerImpl extends SavedRequestAwareAuthentic
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         String contentType = request.getContentType();
-        if(contentType.contains(ContentType.JSON)){
-            response.setContentType(ContentType.JSON);
+        if(contentType != null && contentType.contains(MediaType.APPLICATION_JSON_VALUE)){
+            response.setContentType(MediaType.APPLICATION_JSON_VALUE);
             response.setStatus(HttpServletResponse.SC_OK);
             ObjectMapper mapper = new ObjectMapper();
             Object res = new Object() {
