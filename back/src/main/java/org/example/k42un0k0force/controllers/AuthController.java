@@ -1,4 +1,4 @@
-package org.example.k42un0k0force.controller;
+package org.example.k42un0k0force.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

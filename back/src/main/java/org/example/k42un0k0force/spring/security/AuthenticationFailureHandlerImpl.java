@@ -1,9 +1,9 @@
 package org.example.k42un0k0force.spring.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.k42un0k0force.constants.ContentType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
@@ -18,18 +18,17 @@ public class AuthenticationFailureHandlerImpl extends SimpleUrlAuthenticationFai
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         String contentType = request.getContentType();
-        switch (contentType) {
-            case ContentType.JSON:
-                response.setContentType(ContentType.JSON);
-                response.setStatus(HttpServletResponse.SC_OK);
-                ObjectMapper mapper = new ObjectMapper();
-                Object res = new Object() {
-                    public final String status = "failed";
-                };
-                response.getWriter().print(mapper.writeValueAsString(res));
-                break;
-            default:
-                super.onAuthenticationFailure(request, response, exception);
+        if (contentType != null && contentType.contains(MediaType.APPLICATION_JSON_VALUE)) {
+            response.setContentType(MediaType
+                    .APPLICATION_JSON_VALUE);
+            response.setStatus(HttpServletResponse.SC_OK);
+            ObjectMapper mapper = new ObjectMapper();
+            Object res = new Object() {
+                public final String status = "failed";
+            };
+            response.getWriter().print(mapper.writeValueAsString(res));
+        } else {
+            super.onAuthenticationFailure(request, response, exception);
         }
     }
 }

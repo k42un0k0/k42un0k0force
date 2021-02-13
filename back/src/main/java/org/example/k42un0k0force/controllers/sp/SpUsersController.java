@@ -1,12 +1,13 @@
-package org.example.k42un0k0force.controller;
+package org.example.k42un0k0force.controllers.sp;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@RequestMapping("/users")
-public class UsersController {
+@RestController
+@RequestMapping("/sp/users")
+public class SpUsersController {
     @GetMapping("")
     public String index() {
         return "users/index";

@@ -1,9 +1,9 @@
 package org.example.k42un0k0force.spring.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.k42un0k0force.constants.ContentType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -46,7 +46,8 @@ public class UsernamePasswordAuthenticationFilterImpl extends UsernamePasswordAu
         }
         String username;
         String password;
-        if (request.getContentType().contains(ContentType.JSON)) {
+        String conentType = request.getContentType();
+        if (conentType != null && conentType.contains(MediaType.APPLICATION_JSON_VALUE)) {
             JsonBody jsonBody = getJsonBody(request);
             username = jsonBody.username;
             password = jsonBody.password;
@@ -58,6 +59,8 @@ public class UsernamePasswordAuthenticationFilterImpl extends UsernamePasswordAu
             password = (password != null) ? password : "";
         }
 
+        logger.info("username: " + username);
+        logger.info("username: " + password);
         UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
         // Allow subclasses to set the "details" property
         setDetails(request, authRequest);
