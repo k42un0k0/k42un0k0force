@@ -20,16 +20,17 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
+            ~/back/.gradle/caches
+            ~/back/.gradle/wrapper
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
       - name: Test with Gradle
+        working-directory: ./back
         run: ./gradlew test
       - name: Cleanup Gradle Cache
         # GitHub ActionsでキャッシュされないようにいくつかのファイルをGradleのキャッシュから削除
         # これらのファイルをGitHub Actionsのキャッシュからリストアすると、将来のビルドで問題が生じるかもしれない。
         run: |
-          rm -f ~/.gradle/caches/modules-2/modules-2.lock
-          rm -f ~/.gradle/caches/modules-2/gc.properties
+          rm -f ~/back/.gradle/caches/modules-2/modules-2.lock
+          rm -f ~/back/.gradle/caches/modules-2/gc.properties
