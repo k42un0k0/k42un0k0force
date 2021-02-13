@@ -2,24 +2,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
     <title>Please Log In</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h1>Please Log In</h1>
-<div th:if="${param.error}">
-    Invalid username and password.
-</div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
-<div class="alert" th:if="${errorMessage}" th:text="${errorMessage}"></div>
-<form th:action="@{/login}" method="post">
-    <div>
-        <input type="text" name="username" placeholder="Username"/>
+<div class="bg-white overflow-hidden border-t border-l border-r border-gray-400 p-4 px-3 py-10 bg-gray-200 flex justify-center">
+    <div class="w-full max-w-xs">
+        <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div th:if="${param.error}">
+                Invalid username and password.
+            </div>
+            <div th:if="${param.logout}">
+                You have been logged out.
+            </div>
+            <div class="alert" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+            <h1 class="text-2xl text-gray-500 mb-3">Please Log In</h1>
+            <form th:action="@{/login}" method="post">
+                <div>
+                    <input type="text" name="username" placeholder="Username"/>
+                </div>
+                <div>
+                    <input type="password" name="password" placeholder="Password"/>
+                </div>
+                <input type="submit" value="Log in"/>
+            </form>
+        </div>
     </div>
-    <div>
-        <input type="password" name="password" placeholder="Password"/>
-    </div>
-    <input type="submit" value="Log in"/>
-</form>
+</div>
 </body>
 </html>
