@@ -1,4 +1,4 @@
-@startuml
+@startuml ログアウトする
 left to right direction
 
 actor 従業員

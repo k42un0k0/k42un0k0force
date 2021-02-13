@@ -1,4 +1,4 @@
-@startuml
+@startuml ログインする
 
 
 actor 従業員
