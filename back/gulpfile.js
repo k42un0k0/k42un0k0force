@@ -21,12 +21,13 @@ const generateAssetsPath = (ext)=>`assets/**/*.${ext}`
 const cssPath = generateAssetsPath("css")
 const jsPath = generateAssetsPath("js")
 const imgPath = generateAssetsPath("+(png|jgp|jpeg|gif)")
+const svgPath = generateAssetsPath("svg")
 
 gulp.task('watch', () => {
     gulp.watch([cssPath], gulp.series('copy-css'));
     gulp.watch([jsPath], gulp.series('copy-js'));
     gulp.watch([imgPath], gulp.series('copy-img'));
-//    gulp.watch(['assets/**/*.svg'], gulp.series('copy-svg'));
+    gulp.watch([svgPath], gulp.series('copy-svg'));
 });
 
 gulp.task('copy-css', () =>
@@ -64,11 +65,11 @@ gulp.task('copy-img', () =>
         .pipe(gulp.dest(distPath))
 );
 
-//gulp.task('copy-svg', function(){
-//    gulp.src(['assets/**/*.svg'])
-//        .pipe(svgmin())
-//        .pipe(gulp.dest(distPath))
-//});
+gulp.task('copy-svg', function(){
+    gulp.src(['assets/**/*.svg'])
+        .pipe(svgmin())
+        .pipe(gulp.dest(distPath))
+});
 
-gulp.task('build', gulp.series('copy-css', 'copy-js', 'copy-img'));
+gulp.task('build', gulp.series('copy-css', 'copy-js', 'copy-img','copy-svg'));
 gulp.task('default', gulp.series('watch'));
