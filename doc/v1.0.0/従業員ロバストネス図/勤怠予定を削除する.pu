@@ -1,4 +1,8 @@
 @startuml 勤怠予定を削除する
+left to right direction
+skinparam linetype polyline
+skinparam linetype ortho
 
+actor 従業員
 
 @enduml

@@ -1,4 +1,47 @@
 @startuml 勤怠予定を登録する
+left to right direction
+skinparam linetype polyline
+skinparam linetype ortho
 
+actor 従業員
+note left
+### 基本コース
+システムは「勤怠表」ページを表示する。
+従業員は「勤怠予定登録」ボタンをクリックし、「勤怠予定登録」ページを表示する。
+従業員は出勤日時と退勤日時を入力し、「登録」ボタンをクリックする。
+システムは入力を読み取り、勤怠を作成し、「勤怠詳細」ページを表示する。
+
+### 代替コース
+出勤日時が退勤日時より後の時間が入力された：
+「不適切な日時が入力されてます」を表示する
+日をまたいだ勤怠日時が入力された：
+「一日の範囲内で入力してください」を表示する
+end note
+
+control "「勤怠予定登録」ページを表示" as showAttendanceRegisterPage
+control 出勤日時と退勤日時を入力
+control 出勤時間が退勤時間より遅くないかをチェック
+control 日をまたいでないかをチェック
+control 勤怠予定を作成する
+control "「不適切な日時が入力されてます」を表示する" as showErrorMessageInvalid
+control "「一日の範囲内で入力してください」を表示する" as showErrorMessageOver
+boundary "「勤怠表」ページ" as attendanceListPage
+boundary "「勤怠予定登録」ページ" as attendanceRegisterPage
+boundary "「勤怠詳細」ページ" as attendanceDetailPage
+entity 勤怠予定
+
+従業員 - attendanceListPage
+attendanceListPage --> showAttendanceRegisterPage : 「勤怠予定登録」ボタンをクリック
+showAttendanceRegisterPage --> attendanceRegisterPage
+attendanceRegisterPage -> 出勤日時と退勤日時を入力
+出勤日時と退勤日時を入力 -> 出勤時間が退勤時間より遅くないかをチェック : 「登録」ボタンをクリック
+出勤時間が退勤時間より遅くないかをチェック -> 日をまたいでないかをチェック : はい
+出勤時間が退勤時間より遅くないかをチェック --> showErrorMessageInvalid : いいえ
+showErrorMessageInvalid --> attendanceRegisterPage
+日をまたいでないかをチェック -> 勤怠予定を作成する : はい
+日をまたいでないかをチェック -left-> showErrorMessageOver : いいえ
+showErrorMessageOver --> attendanceRegisterPage
+勤怠予定を作成する -- 勤怠予定
+勤怠予定を作成する -> attendanceDetailPage
 
 @enduml
