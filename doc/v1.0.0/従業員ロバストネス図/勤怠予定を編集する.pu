@@ -4,5 +4,52 @@ skinparam linetype polyline
 skinparam linetype ortho
 
 actor 従業員
+note left
+### 基本コース
+システムは「勤怠詳細」ページを表示する。
+従業員は「編集」ボタンをクリックする。
+システムは「勤怠編集」ページを表示する。
+従業員は出勤日時や退勤日時を修正し、「登録」ボタンをクリックする。
+システムは入力を読み取り、勤怠を更新し、「勤怠詳細」ページを表示する
+
+### 代替コース
+出勤日時が退勤日時より後の時間が入力された：
+「不適切な日時が入力されてます」を表示する。
+日をまたいだ勤怠日時が入力された：
+「一日の範囲内で入力してください」を表示する。
+指定された勤怠が存在しない場合：
+「指定された勤怠は存在しません」を表示する。
+endnote
+
+
+control "「勤怠予定編集」ページを表示" as showAttendanceEditPage
+control 出勤日時と退勤日時を入力
+control 勤怠予定が存在するかチェック
+control 出勤時間が退勤時間より遅くないかをチェック
+control 日をまたいでないかをチェック
+control 勤怠予定を更新する
+control "「不適切な日時が入力されてます」を表示する" as showErrorMessageInvalid
+control "「一日の範囲内で入力してください」を表示する" as showErrorMessageOver
+control "「指定された勤怠は存在しません」を表示する。" as showErrorMessageNotFound
+boundary "「勤怠予定編集」ページ" as attendanceEditPage
+boundary "「勤怠詳細」ページ" as attendanceDetailPage
+entity 勤怠予定
+
+従業員 - attendanceDetailPage
+attendanceDetailPage --> showAttendanceEditPage : 「編集」ボタンをクリック
+showAttendanceEditPage --> attendanceEditPage
+attendanceEditPage -> 出勤日時と退勤日時を入力
+出勤日時と退勤日時を入力 -> 勤怠予定が存在するかチェック: 「登録」ボタンをクリック
+勤怠予定が存在するかチェック -> 出勤時間が退勤時間より遅くないかをチェック : はい
+勤怠予定が存在するかチェック -left-> showErrorMessageNotFound : いいえ
+showErrorMessageNotFound --> attendanceEditPage
+勤怠予定が存在するかチェック -- 勤怠予定
+出勤時間が退勤時間より遅くないかをチェック -> 日をまたいでないかをチェック : はい
+出勤時間が退勤時間より遅くないかをチェック --> showErrorMessageInvalid : いいえ
+showErrorMessageInvalid --> attendanceEditPage
+日をまたいでないかをチェック -> 勤怠予定を更新する : はい
+日をまたいでないかをチェック -left-> showErrorMessageOver : いいえ
+showErrorMessageOver --> attendanceEditPage
+勤怠予定を更新する -> attendanceDetailPage
 
 @enduml
