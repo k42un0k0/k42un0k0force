@@ -4,5 +4,39 @@ skinparam linetype polyline
 skinparam linetype ortho
 
 actor 従業員
+note left 
+### 基本コース
+システムは「勤怠詳細」ページを表示する。
+従業員は「削除」ボタンをクリックする。
+システムは「本当に削除しますか？」ダイアログを表示する。従業員は「はい」ボタンをクリックする。システムは勤怠を削除し、「勤怠表」ページを表示する。
+
+### 代替コース
+従業員が「いいえ」ボタンをクリックした場合：
+システムはダイアログを閉じる。
+指定された勤怠が存在しない場合：
+「指定された勤怠は存在しません」ダイアログを表示する。
+endnote
+
+control "「本当に削除しますか？」ダイアログを表示する" as showDeleteConfirmDialog
+control 指定された勤怠が存在するかチェック
+control 勤怠を削除する
+control ダイアログを閉じる
+control "「指定された勤怠は存在しません」ダイアログを表示する。" as showErrorMessageNotFound
+boundary "「本当に削除しますか？」ダイアログ" as deleteConfirmDialog
+boundary "「勤怠予定一覧」ページ" as attendanceListPage
+boundary "「勤怠詳細」ページ" as attendanceDetailPage
+entity 勤怠予定
+
+従業員 - attendanceDetailPage
+attendanceDetailPage --> showDeleteConfirmDialog : 「削除」ボタンをクリック
+showDeleteConfirmDialog --> deleteConfirmDialog
+deleteConfirmDialog -> 指定された勤怠が存在するかチェック : 「はい」ボタンをクリック
+deleteConfirmDialog --> ダイアログを閉じる : 「いいえ」ボタンをクリック
+指定された勤怠が存在するかチェック - 勤怠予定
+指定された勤怠が存在するかチェック -> 勤怠を削除する: はい
+指定された勤怠が存在するかチェック --> showErrorMessageNotFound: いいえ
+showErrorMessageNotFound --> attendanceListPage
+勤怠を削除する -> ダイアログを閉じる
+ダイアログを閉じる -> attendanceListPage
 
 @enduml
